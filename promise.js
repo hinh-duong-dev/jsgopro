@@ -6,22 +6,44 @@ function randomImagePromise(tag) {
       .then(json => json.data.images.original.url);
   }
 
+
+  //Promise Sequential
+
+//   $('#request').click(() => {
+//     console.time('getAnimalPromiseSequential')
+
+//     randomImagePromise('cat').then(catImgUrl => {
+//         $('#cat').attr('src', catImgUrl);
+//         return randomImagePromise('dog');
+//     })
+//     .then(dogImgUrl => {
+//         $('#dog').attr('src', dogImgUrl);
+//         return randomImagePromise('fish');
+//     })
+//     .then(fishImgUrl => {
+//         $('#fish').attr('src', fishImgUrl);
+//     })
+
+//     console.timeEnd('getAnimalPromiseSequential')
+ // });
+
+  //Promise Parallels
+
   $('#request').click(() => {
-    console.time('getAnimalPromiseSequential')
+    console.time('getAnimalPromiseParallels')
 
-    randomImagePromise('cat').then(catImgUrl => {
-        $('#cat').attr('src', catImgUrl);
-        return randomImagePromise('dog');
-    })
-    .then(dogImgUrl => {
-        $('#dog').attr('src', dogImgUrl);
-        return randomImagePromise('fish');
-    })
-    .then(fishImgUrl => {
-        $('#fish').attr('src', fishImgUrl);
-    })
+    Promise.all([
+        randomImagePromise('cat'),
+        randomImagePromise('dog'),
+        randomImagePromise('fish')
+    ]).then(results => {
+      $('#cat').attr('src', results[0]);
+      $('#dog').attr('src',results[1]);
+      $('#fish').attr('src', results[2]);
+    });
 
-    console.timeEnd('getAnimalPromiseSequential')
+    console.timeEnd('getAnimalPromiseParallels')
   });
+
   
   

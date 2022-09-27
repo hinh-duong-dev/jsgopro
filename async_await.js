@@ -7,38 +7,38 @@ function randomImageAsync(tag) {
   }
   
   //async/await
-  $('#request').click(async () => {
-    console.time('getAnimalSequential')
+//   $('#request').click(async () => {
+//     console.time('getAnimalSequential')
 
-    const catImgUrl = await randomImageAsync('cat');
-    const dogImgUrl = await randomImageAsync('dog');
-    const fishImgUrl = await randomImageAsync('fish');
+//     const catImgUrl = await randomImageAsync('cat');
+//     const dogImgUrl = await randomImageAsync('dog');
+//     const fishImgUrl = await randomImageAsync('fish');
 
-    console.timeEnd('getAnimalSequential')
+//     console.timeEnd('getAnimalSequential')
 
-    $('#cat').attr('src', catImgUrl);
-    $('#dog').attr('src', dogImgUrl);
-    $('#fish').attr('src', fishImgUrl);
-  });
+//     $('#cat').attr('src', catImgUrl);
+//     $('#dog').attr('src', dogImgUrl);
+//     $('#fish').attr('src', fishImgUrl);
+//   });
   
   // parallels
-//   $('#request').click(async () => {
-//       console.time('getAnimalParallels')
+  $('#request').click(async () => {
+      console.time('getAnimalParallels')
 
-//       const result = await Promise.all([
-//          randomImageAsync('cat'),
-//          randomImageAsync('dog'),
-//          randomImageAsync('fish')
-//       ]);
+      const result = await Promise.all([
+         randomImageAsync('cat'),
+         randomImageAsync('dog'),
+         randomImageAsync('fish')
+      ]);
 
-//       console.timeEnd('getAnimalParallels')
+      console.timeEnd('getAnimalParallels')
       
-//       console.table([result[0], result[0], result[2]])
+      console.table([result[0], result[1], result[2]])
 
-//       $('#cat').attr('src', result[0]);
-//       $('#dog').attr('src',result[0]);
-//       $('#fish').attr('src', result[2]);
-//     });
+      $('#cat').attr('src', result[0]);
+      $('#dog').attr('src',result[1]);
+      $('#fish').attr('src', result[2]);
+    });
   
   
     // loop
