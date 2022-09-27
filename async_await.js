@@ -1,4 +1,4 @@
-function findRandomImgPromise(tag) {
+function randomImageAsync(tag) {
     const apiKey = '0UTRbFtkMxAplrohufYco5IY74U8hOes';
     const endpoint = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${tag}`;
     return fetch(endpoint)
@@ -10,9 +10,9 @@ function findRandomImgPromise(tag) {
   $('#request').click(async () => {
     console.time('getAnimalSequential')
 
-    const catImgUrl = await findRandomImgPromise('cat');
-    const dogImgUrl = await findRandomImgPromise('dog');
-    const fishImgUrl = await findRandomImgPromise('fish');
+    const catImgUrl = await randomImageAsync('cat');
+    const dogImgUrl = await randomImageAsync('dog');
+    const fishImgUrl = await randomImageAsync('fish');
 
     console.timeEnd('getAnimalSequential')
 
@@ -26,9 +26,9 @@ function findRandomImgPromise(tag) {
 //       console.time('getAnimalParallels')
 
 //       const result = await Promise.all([
-//          findRandomImgPromise('cat'),
-//          findRandomImgPromise('dog'),
-//          findRandomImgPromise('fish')
+//          randomImageAsync('cat'),
+//          randomImageAsync('dog'),
+//          randomImageAsync('fish')
 //       ]);
 
 //       console.timeEnd('getAnimalParallels')
@@ -62,7 +62,7 @@ function findRandomImgPromise(tag) {
     
   //   async function randomImg(tag) {
   //     for(let i = 0; i < 5; i++) {
-  //       const imgUrl = await findRandomImgPromise(tag);
+  //       const imgUrl = await randomImageAsync(tag);
   //       $('#' + tag).attr('src', imgUrl);
   //       await setTimeoutPromise(2*1000);
   //     }
