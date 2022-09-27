@@ -6,7 +6,7 @@ function randomImagePromise(tag) {
       .then(json => json.data.images.original.url);
   }
 
-  $('#request').click(async () => {
+  $('#request').click(() => {
     console.time('getAnimalPromiseSequential')
 
     randomImagePromise('cat').then(catImgUrl => {
